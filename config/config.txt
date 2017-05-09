@@ -1,0 +1,6 @@
+Browser=Firefox
+internetexplorerdriverpath=E://seleniumgeeko//IEDriverServer.exe
+chromedriverpath=E://seleniumgeeko//chromedriver.exe
+firefoxdriverpath=E://seleniumgeeko//geckodriver.exe
+url=www.google.co.in
+configpath=./config/config.txt

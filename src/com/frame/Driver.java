@@ -1,5 +1,6 @@
 package com.frame;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -10,20 +11,20 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public class Driver {
 	WebDriver genricdriver;
-	String browser;
+	//String browser;
 	
-	public WebDriver loaddriver(String browser)
+	public WebDriver loaddriver(String browser) throws IOException
 	{
-		
-		if(browser.equalsIgnoreCase("Firefox")){
-		System.setProperty("webdriver.gecko.driver","E://seleniumgeeko//geckodriver.exe");
+		Environmentsetting.loadProperyies();
+		if(browser.equalsIgnoreCase(Environmentsetting.getBrowser())){
+		System.setProperty("webdriver.gecko.driver",Environmentsetting.getFirefoxdriverpath());
 		genricdriver=new FirefoxDriver();
 		genricdriver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 		genricdriver.manage().window().maximize();
 		
-		}else if(browser.equalsIgnoreCase("Chrome"))
+		}else if(browser.equalsIgnoreCase(Environmentsetting.getBrowser()))
 		{
-			System.setProperty("webdriver.chrome.driver","E://seleniumgeeko//chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver",Environmentsetting.getChromedriverpath());
 			genricdriver=new ChromeDriver();
 			genricdriver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 			genricdriver.manage().window().maximize();
@@ -31,7 +32,7 @@ public class Driver {
 			
 		}else
 		{
-			System.setProperty("webdriver.ie.driver","E://seleniumgeeko//IEDriverServer.exe");
+			System.setProperty("webdriver.ie.driver",Environmentsetting.getInternetexplorerdriverpath());
 			genricdriver=new InternetExplorerDriver();
 			genricdriver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 			genricdriver.manage().window().maximize();
